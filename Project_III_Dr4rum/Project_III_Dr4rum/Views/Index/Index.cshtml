@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Project_III_Dr4rum.Models.Group>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/index_banner.jpg" class="img-fluid" alt="Responsive image">
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="#" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        <!--
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Snippets</a>
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Breadcrumbs text</a>
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Section</a>
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Category</a>
+        -->
+        <div class="btn btn-info breadcrumb-info">Home</div>
+    </div>
+</div>  
+@foreach (var groupItem in Model)
+{
+    // Biến groupItem lúc này đại diện cho một Group trong bảng
+    // Mỗi vòng lặp sẽ chạy qua một group trong bảng Group
+    // In tên group ra nè
+
+    <h1>@groupItem.Group_Name</h1>
+
+    // List danh sách các cate trong group ra nè
+    foreach (var cateItem in groupItem.Categories)
+    {
+        // Biến cateItem lúc này đại diện cho một category trong group
+        // Mỗi vòng lặp sẽ chạy qua một cate trong group hiện tại
+        // In tên cate ra
+        <p>@cateItem.Category_Name</p>
+    }
+}
