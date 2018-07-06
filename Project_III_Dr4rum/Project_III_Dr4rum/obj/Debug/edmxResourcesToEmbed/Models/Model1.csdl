@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Dr4rumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Acc_ID" />
+    </Key>
+    <Property Name="Acc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Incognito" Type="Boolean" Nullable="false" />
+    <Property Name="SetV" Type="Boolean" Nullable="false" />
+    <Property Name="Speciality" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Experience" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Achievement" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Accounts1" FromRole="Accounts" ToRole="Post" />
+    <NavigationProperty Name="Topics" Relationship="Self.FK_Topic_Accounts1" FromRole="Accounts" ToRole="Topic" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Category_Name" />
+    </Key>
+    <Property Name="Category_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SetV" Type="Boolean" Nullable="false" />
+    <Property Name="Group_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_Category_Group" FromRole="Category" ToRole="Group" />
+    <NavigationProperty Name="Topics" Relationship="Self.FK_Topic_Category" FromRole="Category" ToRole="Topic" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Group_Name" />
+    </Key>
+    <Property Name="Group_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SetV" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Category_Group" FromRole="Group" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Post_ID" />
+    </Key>
+    <Property Name="Post_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Topic_Tile" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Acc_ID" Type="Int32" Nullable="false" />
+    <Property Name="Post_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Like_Num" Type="Int32" Nullable="false" />
+    <Property Name="Dislike_Num" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Post_Accounts1" FromRole="Post" ToRole="Accounts" />
+    <NavigationProperty Name="Topic" Relationship="Self.FK_Post_Topic" FromRole="Post" ToRole="Topic" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="Topic_Title" />
+    </Key>
+    <Property Name="Topic_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Acc_ID" Type="Int32" Nullable="false" />
+    <Property Name="Category_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="setV" Type="Boolean" Nullable="false" />
+    <Property Name="Topic_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Report" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Topic_Accounts1" FromRole="Topic" ToRole="Accounts" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Topic_Category" FromRole="Topic" ToRole="Category" />
+    <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Topic" FromRole="Topic" ToRole="Post" />
+  </EntityType>
+  <Association Name="FK_Post_Accounts1">
+    <End Role="Accounts" Type="Self.Account" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Acc_ID" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="Acc_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Topic_Accounts1">
+    <End Role="Accounts" Type="Self.Account" Multiplicity="1" />
+    <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Acc_ID" />
+      </Principal>
+      <Dependent Role="Topic">
+        <PropertyRef Name="Acc_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Group_Name" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="Group_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Topic_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Category_Name" />
+      </Principal>
+      <Dependent Role="Topic">
+        <PropertyRef Name="Category_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Topic">
+    <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topic">
+        <PropertyRef Name="Topic_Title" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="Topic_Tile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Dr4rumEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
+    <EntitySet Name="Posts" EntityType="Self.Post" />
+    <EntitySet Name="Topics" EntityType="Self.Topic" />
+    <AssociationSet Name="FK_Post_Accounts1" Association="Self.FK_Post_Accounts1">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Topic_Accounts1" Association="Self.FK_Topic_Accounts1">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Topic" EntitySet="Topics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Group" Association="Self.FK_Category_Group">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Topic_Category" Association="Self.FK_Topic_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Topic" EntitySet="Topics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Topic" Association="Self.FK_Post_Topic">
+      <End Role="Topic" EntitySet="Topics" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
