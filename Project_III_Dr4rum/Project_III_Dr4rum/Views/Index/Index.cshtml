@@ -14,20 +14,36 @@
         <div class="btn btn-info breadcrumb-info">Home</div>
     </div>
 </div>  
-@foreach (var groupItem in Model)
-{
-    // Biến groupItem lúc này đại diện cho một Group trong bảng
-    // Mỗi vòng lặp sẽ chạy qua một group trong bảng Group
-    // In tên group ra nè
+<div class="index-list-containt">
+    <div class="index-list">
+        
+        @foreach (var groupItem in Model)
+        {
+            // The variable GroupItem now represents a Group in the table
+            // Each loop will display a group in Group table
+            // Display Group name
+            <div class="alert alert-danger" role="alert">
+                <h3>@groupItem.Group_Name</h3>
+            </div>
 
-    <h1>@groupItem.Group_Name</h1>
-
-    // List danh sách các cate trong group ra nè
-    foreach (var cateItem in groupItem.Categories)
-    {
-        // Biến cateItem lúc này đại diện cho một category trong group
-        // Mỗi vòng lặp sẽ chạy qua một cate trong group hiện tại
-        // In tên cate ra
-        <p>@cateItem.Category_Name</p>
-    }
-}
+            // Display Group's category list
+            foreach (var cateItem in groupItem.Categories)
+            {
+                // The variable cateItem now represents a Category in GroupItem
+                // Each loop will display a Category item  in current Group
+                // Display Category name
+            <div class="category-containt">
+                <div class="category-icon-containt">
+                    <img src="~/Image/Logo_Icon/comment-50.png" class="category-icon" alt="Site Logo" />
+                </div>
+                <div class="category-title">
+                    <p>@cateItem.Category_Name</p> 
+                </div>
+                <div class="Topic-num ">
+                    <p>Số Bài Viết : XXX</p>
+                </div>
+            </div>
+            }
+        }
+    </div>
+</div>

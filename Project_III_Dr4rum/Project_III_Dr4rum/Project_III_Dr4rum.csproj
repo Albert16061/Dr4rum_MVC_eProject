@@ -202,6 +202,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Image\Banner_Pic\index_banner.jpg" />
     <Content Include="Image\Logo_Icon\avatar-50.png" />
+    <Content Include="Image\Logo_Icon\comment-50.png" />
     <Content Include="Image\Logo_Icon\home-50.png" />
     <Content Include="Image\Logo_Icon\red_cross.png" />
     <Content Include="Models\Model1.Context.tt">

@@ -16,5 +16,7 @@ namespace Project_III_Dr4rum.Controllers
             var listGroup = db.Groups.ToList();
             return View(listGroup);
         }
+
+
     }
 }
