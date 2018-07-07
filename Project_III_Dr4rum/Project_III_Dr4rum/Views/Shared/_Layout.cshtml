@@ -20,10 +20,16 @@
                     </a>
                 </div>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li>@Html.ActionLink("Group", "Index", "Home", new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Category", "About", "Home", new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li> 
+                    <li>@Html.ActionLink("About", "About", "Home",null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", null,new { @class = "nav-link" })</li>
                 </ul>
+                <!-- Searching-->
+                <form class="form-inline my-2 my-lg-0 searching">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- Button Login -->
                 <div class="form-inline my-2 my-lg-0">
                     <button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">Login</button>
                     <button class=" btn  btn-outline-light" type="submit">Register</button>

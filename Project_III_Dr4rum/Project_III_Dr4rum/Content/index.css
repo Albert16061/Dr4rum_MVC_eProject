@@ -18,6 +18,17 @@
 }
 
 /*Breadcumb begn*/
+.searching{
+    margin: auto;
+}
+.breadcrumb-link {
+    color: white !important;
+    text-decoration: none;
+    font-size: 20px;
+}
+.breadcrumb-link:hover {
+    text-decoration: none;
+}
 @media (max-width: 767px) {
     .btn-breadcrumb {
         margin-left: 10px;
