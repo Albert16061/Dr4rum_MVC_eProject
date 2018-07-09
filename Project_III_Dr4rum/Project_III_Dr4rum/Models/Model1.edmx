@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Dr4rumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Dr4rumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accounts">
           <Key>
             <PropertyRef Name="Acc_ID" />
@@ -62,6 +62,7 @@
           <Property Name="setV" Type="bit" Nullable="false" />
           <Property Name="Topic_Info" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Report" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Category_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="1" />
@@ -150,7 +151,8 @@
             <End Role="Topic" EntitySet="Topic" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Dr4rumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -218,6 +220,7 @@
           <Property Name="setV" Type="Boolean" Nullable="false" />
           <Property Name="Topic_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Report" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Topic_Accounts1" FromRole="Topic" ToRole="Accounts" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Topic_Category" FromRole="Topic" ToRole="Category" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Topic" FromRole="Topic" ToRole="Post" />
@@ -282,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Dr4rumEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Dr4rumEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
@@ -314,7 +317,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities">
+        <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities1">
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="Dr4rumModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
@@ -375,6 +378,7 @@
                 <ScalarProperty Name="setV" ColumnName="setV" />
                 <ScalarProperty Name="Topic_Info" ColumnName="Topic_Info" />
                 <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="date" ColumnName="date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

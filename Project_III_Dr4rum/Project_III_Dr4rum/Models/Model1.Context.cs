@@ -13,10 +13,10 @@ namespace Project_III_Dr4rum.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Dr4rumEntities : DbContext
+    public partial class Dr4rumEntities1 : DbContext
     {
-        public Dr4rumEntities()
-            : base("name=Dr4rumEntities")
+        public Dr4rumEntities1()
+            : base("name=Dr4rumEntities1")
         {
         }
     

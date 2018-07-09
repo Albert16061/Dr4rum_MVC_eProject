@@ -57,6 +57,7 @@
     <Property Name="setV" Type="bit" Nullable="false" />
     <Property Name="Topic_Info" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Report" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_Category_Group">
     <End Role="Group" Type="Self.Group" Multiplicity="1" />

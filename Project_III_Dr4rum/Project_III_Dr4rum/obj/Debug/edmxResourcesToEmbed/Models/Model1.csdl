@@ -64,6 +64,7 @@
     <Property Name="setV" Type="Boolean" Nullable="false" />
     <Property Name="Topic_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Report" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Account" Relationship="Self.FK_Topic_Accounts1" FromRole="Topic" ToRole="Accounts" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Topic_Category" FromRole="Topic" ToRole="Category" />
     <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Topic" FromRole="Topic" ToRole="Post" />
@@ -128,7 +129,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Dr4rumEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Dr4rumEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Groups" EntityType="Self.Group" />

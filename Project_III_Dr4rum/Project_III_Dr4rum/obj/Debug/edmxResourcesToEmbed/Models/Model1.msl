@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities">
+  <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities1">
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="Dr4rumModel.Account">
         <MappingFragment StoreEntitySet="Accounts">
@@ -61,6 +61,7 @@
           <ScalarProperty Name="setV" ColumnName="setV" />
           <ScalarProperty Name="Topic_Info" ColumnName="Topic_Info" />
           <ScalarProperty Name="Report" ColumnName="Report" />
+          <ScalarProperty Name="date" ColumnName="date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
